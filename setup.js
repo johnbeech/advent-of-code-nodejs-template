@@ -1,5 +1,5 @@
 const path = require('path')
-const { read, write, position, find } = require('promise-path')
+const { read, write, position, run } = require('promise-path')
 
 const fromHere = position(__dirname)
 const report = (...messages) => console.log(`[${require(fromHere('./package.json')).logName} / ${__filename.split(path.sep).pop().split('.js').shift()}]`, ...messages)
@@ -35,6 +35,11 @@ async function setup() {
   await replaceInFile('README.md', 'Advent of Code Template using Node JS for Current Year.', `My solutions for Advent of Code ${currentYear}.`)
 
   await replaceInFile('package.json', 'advent-of-code-template', currentFolder)
+
+  await run(`rm ${fromHere('setup.js')}`)
+  await run(`git add .`)
+  await run(`git commit -m "Setup template for Current Year (${currentYear})"`)
+  await run('git push')
 }
 
 setup()
