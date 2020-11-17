@@ -18,6 +18,13 @@ async function setup() {
 
   const currentYear = currentFolder.split('-').pop()
 
+  if (currentYear === 'template') {
+    console.error('  No current year provided.')
+    console.error('  Please re-run setup after renaming the repo, e.g.: advent-of-code-2020, advent-of-code-2021, advent-of-code-2022, etc.')
+    console.error('')
+    process.exit(0)
+  }
+
   await replaceInFile('package.json', /Advent of Code Template/g, `Advent of Code ${currentYear}`)
   await replaceInFile('README.md', '# Advent of Code Template', `# Advent of Code ${currentYear}`)
   
