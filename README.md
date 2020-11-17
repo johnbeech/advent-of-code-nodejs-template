@@ -1,6 +1,6 @@
-# Advent of Code 2019
+# Advent of Code Template
 
-My solutions for Advent of Code 2019.
+Advent of Code Template using Node JS for Current Year.
 
 ## Setup
 

@@ -2,7 +2,7 @@
   "name": "advent-of-code-template",
   "logName": "Advent of Code Template",
   "version": "1.0.0",
-  "description": "My solutions for Advent of Code Template, written in JavaScript using nodejs",
+  "description": "Advent of Code Template using Node JS for Current Year.",
   "main": "run.js",
   "scripts": {
     "start": "node solutions/viewer-server.js",
