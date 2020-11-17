@@ -35,3 +35,5 @@ A local webserver has been provided to browse the solutions, and optionally crea
 
 To start the server run: `npm run webserver` - a new hardcoded index.html will be generated each time you browse the index.
 
+If you enable github pages from your repo settings, and host from the root of the project, you'll be able to access this index and the solutions from the provided hosted URL. Please replace this message with a link to those pages if you do.
+
