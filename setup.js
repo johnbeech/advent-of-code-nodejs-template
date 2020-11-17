@@ -4,13 +4,13 @@ const { read, write, position, run } = require('promise-path')
 const fromHere = position(__dirname)
 const report = (...messages) => console.log(`[${require(fromHere('./package.json')).logName} / ${__filename.split(path.sep).pop().split('.js').shift()}]`, ...messages)
 
-async function replaceInFile(filename, search, replace) {
+async function replaceInFile (filename, search, replace) {
   const haystack = await read(filename, 'utf8')
   const ashes = haystack.replace(search, replace)
   return write(filename, ashes, 'utf8')
 }
 
-async function setup() {
+async function setup () {
   const currentPath = fromHere('/')
   const currentFolder = currentPath.split('/').reverse()[1]
 
@@ -31,7 +31,7 @@ async function setup() {
 
   await replaceInFile('package.json', /Advent of Code Template/g, `Advent of Code ${currentYear}`)
   await replaceInFile('README.md', '# Advent of Code Template', `# Advent of Code ${currentYear}`)
-  
+
   await replaceInFile('package.json', 'Advent of Code Template using Node JS for Current Year.', `My solutions for Advent of Code ${currentYear}.`)
   await replaceInFile('README.md', 'Advent of Code Template using Node JS for Current Year.', `My solutions for Advent of Code ${currentYear}.`)
 
@@ -41,7 +41,7 @@ async function setup() {
   await run(`rm ${fromHere('setup.js')}`)
 
   report('Committing changes and pushing to remote')
-  await run(`git add .`)
+  await run('git add .')
   await run(`git commit -m "Setup template for Current Year (${currentYear})"`)
   await run('git push')
 

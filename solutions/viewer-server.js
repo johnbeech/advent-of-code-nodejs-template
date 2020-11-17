@@ -7,7 +7,7 @@ const report = (...messages) => console.log(`[${require(fromHere('../package.jso
 const app = express()
 const packageData = require('../package.json')
 
-async function generateIndexHTML() {
+async function generateIndexHTML () {
   const title = packageData.logName
   const solutions = await find(fromHere('/*'))
   const links = solutions
