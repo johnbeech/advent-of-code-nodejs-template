@@ -25,6 +25,9 @@ async function setup() {
     process.exit(0)
   }
 
+  await replaceInFile('README.md', 'If using the Advent of Code Template repo; click [**`Use this template`**](./generate) to set a new repository name, e.g.: `advent-of-code-20xx`.\n', '')
+  await replaceInFile('README.md', 'If this a brand new repository, run: `node setup` to configure it for Current Year.\n', '')
+
   await replaceInFile('package.json', /Advent of Code Template/g, `Advent of Code ${currentYear}`)
   await replaceInFile('README.md', '# Advent of Code Template', `# Advent of Code ${currentYear}`)
   

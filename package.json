@@ -5,7 +5,8 @@
   "description": "Advent of Code Template using Node JS for Current Year.",
   "main": "run.js",
   "scripts": {
-    "start": "node solutions/viewer-server.js",
+    "start": "npm run test && node run.js",
+    "webserver": "node solutions/viewer-server.js",
     "test": "npm run lint && node run.js",
     "create": "node copy-template",
     "lint": "standard --fix"
