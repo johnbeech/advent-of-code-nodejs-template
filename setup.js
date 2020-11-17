@@ -25,6 +25,7 @@ async function setup() {
     process.exit(0)
   }
 
+  report('Replacing strings in templates')
   await replaceInFile('README.md', 'If using the Advent of Code Template repo; click [**`Use this template`**](https://github.com/johnbeech/advent-of-code-nodejs-template/generate) and set a new repository name.\n', '')
   await replaceInFile('README.md', 'If this a brand new repository, run: `node setup` to configure it for Current Year and check in the changes.\n', '')
 
@@ -36,10 +37,15 @@ async function setup() {
 
   await replaceInFile('package.json', 'advent-of-code-template', currentFolder)
 
+  report('Removing setup script')
   await run(`rm ${fromHere('setup.js')}`)
+
+  report('Committing changes and pushing to remote')
   await run(`git add .`)
   await run(`git commit -m "Setup template for Current Year (${currentYear})"`)
   await run('git push')
+
+  report(`All done! ${currentYear} setup and ready to go~`)
 }
 
 setup()
