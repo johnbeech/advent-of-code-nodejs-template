@@ -8,7 +8,6 @@
     "start": "npm run test && node run.js",
     "webserver": "node solutions/viewer-server.js",
     "test": "npm run lint",
-    "create": "node copy-template",
     "lint": "standard --fix"
   },
   "author": "John Beech",

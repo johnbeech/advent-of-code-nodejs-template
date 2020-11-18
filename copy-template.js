@@ -3,7 +3,7 @@ const { make, position, find, read, write, run } = require('promise-path')
 const fromHere = position(__dirname)
 const report = (...messages) => console.log(`[${require(fromHere('./package.json')).logName} / ${__filename.split(path.sep).pop().split('.js').shift()}]`, ...messages)
 
-async function fetchAOCDInput(currentYear, currentDay) {
+async function fetchAOCDInput (currentYear, currentDay) {
   report('Using AOCD to attempt to download your puzzle input, see: https://github.com/wimglenn/advent-of-code-data')
   try {
     const { stdout, stderr } = await run(`aocd ${currentDay} ${currentYear}`)
@@ -14,8 +14,7 @@ async function fetchAOCDInput(currentYear, currentDay) {
       report(`Downloaded ${stderr.bytes} bytes of data using AOCD.`)
     }
     return stdout
-  }
-  catch(ex) {
+  } catch (ex) {
     report(`Could not fetch input for ${currentYear} / ${currentDay}`, ex)
   }
   return 'PASTE YOUR INPUT HERE'
@@ -68,4 +67,4 @@ async function copyTemplate () {
   report('Done.')
 }
 
-copyTemplate()
+module.exports = copyTemplate()

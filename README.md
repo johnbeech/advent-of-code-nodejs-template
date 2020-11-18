@@ -17,17 +17,11 @@ To run a solution by day, use:
 npm start day1
 ````
 
-## New solutions
+If a solution exists for that day, then it will run with basic tests. If a solution does not exist, it will copy the template, and then try to download that day's puzzle input using [AOCD](https://github.com/wimglenn/advent-of-code-data).
 
-To create a new solution, run:
+If you don't have AOCD configured, populate `input.txt` with your solution input from the AOC website, and then start implementing your solution in the new folder for that day.
 
-```
-npm run create day1
-```
-
-This will not overwrite existing solutions; but it will copy the template, and then try to download that day's puzzle input using [AOCD](https://github.com/wimglenn/advent-of-code-data).
-
-Populate `input.txt` with your solution input, and then start implementing your solution in the day's folder.
+Once you have calculated a solution, you should manually submit your answer through the website.
 
 ## Viewer
 
