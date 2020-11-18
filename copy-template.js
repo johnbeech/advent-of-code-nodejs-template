@@ -1,9 +1,27 @@
 const path = require('path')
-const { make, position, find, read, write } = require('promise-path')
+const { make, position, find, read, write, run } = require('promise-path')
 const fromHere = position(__dirname)
 const report = (...messages) => console.log(`[${require(fromHere('./package.json')).logName} / ${__filename.split(path.sep).pop().split('.js').shift()}]`, ...messages)
 
-async function run () {
+async function fetchAOCDInput(currentYear, currentDay) {
+  report('Using AOCD to attempt to download your puzzle input, see: https://github.com/wimglenn/advent-of-code-data')
+  try {
+    const { stdout, stderr } = await run(`aocd ${currentDay} ${currentYear}`)
+    if (stderr) {
+      report(`AOCD ${currentYear} / ${currentDay}`, stderr)
+    }
+    if (stdout) {
+      report(`Downloaded ${stderr.bytes} bytes of data using AOCD.`)
+    }
+    return stdout
+  }
+  catch(ex) {
+    report(`Could not fetch input for ${currentYear} / ${currentDay}`, ex)
+  }
+  return 'PASTE YOUR INPUT HERE'
+}
+
+async function copyTemplate () {
   const newFolderName = process.argv[2]
   const templateFolderPath = 'solutions/template'
   const targetFolderPath = fromHere(`solutions/${newFolderName}`)
@@ -35,7 +53,19 @@ async function run () {
     return write(fromHere(newFilePath), contents)
   }))
 
+  report('Attemping to download puzzle input for this date')
+  const currentYear = Number.parseInt(fromHere('/').split('/').reverse()[0])
+  const currentDay = Number.parseInt(newFolderName.replace('day', ''))
+
+  if (currentYear > 0 && currentDay > 0) {
+    report(`Potentially valid year (${currentYear}) / day (${currentDay})`)
+    const aocInputText = await fetchAOCDInput(currentYear, currentDay)
+    await write(fromHere(`solutions/${newFolderName}/input.txt`), aocInputText, 'utf8')
+  } else {
+    report(`Invalid year (${currentYear}) / day (${currentDay})`)
+  }
+
   report('Done.')
 }
 
-run()
+copyTemplate()

@@ -25,7 +25,7 @@ To create a new solution, run:
 npm run create day1
 ```
 
-This will not overwrite existing solutions.
+This will not overwrite existing solutions; but it will copy the template, and then try to download that day's puzzle input using [AOCD](https://github.com/wimglenn/advent-of-code-data).
 
 Populate `input.txt` with your solution input, and then start implementing your solution in the day's folder.
 
