@@ -59,7 +59,7 @@ async function copyTemplate () {
   const currentYear = currentFolder.split('-').pop()
   const currentDay = Number.parseInt(newFolderName.replace('day', ''))
 
-  report(`Based on the path, ${currentFolder} I think its: ${currentYear}, and you're trying to solve: ${currentDay}`)
+  report(`Based on the path, ${currentFolder} I think its: ${currentYear}, and you're trying to solve: Day ${currentDay}`)
 
   if (currentYear > 0 && currentDay > 0) {
     report(`Potentially valid year (${currentYear}) / day (${currentDay})`)
