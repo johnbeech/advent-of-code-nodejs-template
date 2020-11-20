@@ -53,8 +53,13 @@ async function copyTemplate () {
   }))
 
   report('Attemping to download puzzle input for this date')
-  const currentYear = Number.parseInt(fromHere('/').split('/').reverse()[0])
+
+  const currentPath = fromHere('/')
+  const currentFolder = currentPath.split('/').reverse()[1]
+  const currentYear = currentFolder.split('-').pop()
   const currentDay = Number.parseInt(newFolderName.replace('day', ''))
+
+  report(`Based on the path, ${currentFolder} I think its: ${currentYear}, and you're trying to solve: ${currentDay}`)
 
   if (currentYear > 0 && currentDay > 0) {
     report(`Potentially valid year (${currentYear}) / day (${currentDay})`)
